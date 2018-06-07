@@ -7,10 +7,11 @@ services:
 
 before_script:
   - docker-compose up -d
-  - docker exec laraci_php_1 cp .env.travis .env
-  - docker exec laraci_php_1 mysql -e 'create database homestead_test;'
-  - docker exec laraci_php_1 composer self-update
-  - docker exec laraci_php_1 composer install --no-interaction
+  - docker-compose exec php /bin/bash
+  - cp .env.travis .env
+  - mysql -e 'create database homestead_test;'
+  - composer self-update
+  - composer install --no-interaction
 
 script:
-  - docker exec laraci_php_1 vendor/bin/phpunit
+  - vendor/bin/phpunit
