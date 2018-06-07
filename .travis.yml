@@ -8,7 +8,7 @@ services:
 before_script:
   - docker-compose up -d
   - docker-compose exec php cp .env.travis .env
-  - docker-compose exec php mysql -e 'create database homestead_test;'
+  - docker-compose exec db mysql -e 'create database homestead_test;'
   - docker-compose exec php composer self-update
   - docker-compose exec php composer install --no-interaction
 
