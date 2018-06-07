@@ -2,14 +2,18 @@ language: php
 
 sudo: enabled
 
+services:
+  - docker
+
 php:
   - 7.2
 
 before_script:
-  - cp .env.travis .env
-  - mysql -e 'create database homestead_test;'
-  - composer self-update
-  - composer install --no-interaction
+  - docker-compose up
+  - docker exec laraci_php_1 cp .env.travis .env
+  - docker exec laraci_php_1 mysql -e 'create database homestead_test;'
+  - docker exec laraci_php_1 composer self-update
+  - docker exec laraci_php_1 composer install --no-interaction
 
 script:
-  - vendor/bin/phpunit
+  - docker exec laraci_php_1 vendor/bin/phpunit

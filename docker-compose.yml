@@ -3,16 +3,16 @@ services:
   web:
     image: nginx:1.15.0
     volumes:
-      - ./code:/code
+      - ./:/var/www/html
     ports:
-      - "8080:80"
+      - "8888:80"
     links:
       - php
 
   php:
     image: php:7.2-fpm
     volumes:
-        - ./code:/code
+        - ./:/var/www/html
 
   db:
     image: mysql:5.6
