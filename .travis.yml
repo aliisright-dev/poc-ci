@@ -7,6 +7,7 @@ services:
 
 before_script:
   - docker-compose up -d
+    - docker-compose exec -T app php ls
   - docker-compose exec -T app cp .env.travis .env
   - docker-compose exec -T app php artisan key:generate
 script:
