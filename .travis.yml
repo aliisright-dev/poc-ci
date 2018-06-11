@@ -7,7 +7,7 @@ services:
 
 before_script:
   - docker-compose up -d
-  - docker-compose exec php cp .env.travis .env
+  - docker-compose exec app cp .env.travis .env
 script:
-  - docker-compose exec php php artisan key:generate
-  - docker-compose exec php vendor/bin/phpunit
+  - docker-compose exec app php artisan key:generate
+  - docker-compose exec app vendor/bin/phpunit
